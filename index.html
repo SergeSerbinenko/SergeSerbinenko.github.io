@@ -1,0 +1,120 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+    <link rel="stylesheet" href="tooltipster.bundle.min.css">
+    <link rel="stylesheet" href="animate.css">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="tooltipster.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div class="tooltip_templates">
+      <span id="tooltip_content">
+
+      </span>
+    </div>
+    <div id="mainContainer">
+      <div id="header">
+        <h3>Life Tracker</h3>
+      </div>
+      <div id="floater">
+
+      </div>
+      <div id="mainPage">
+        <div id="sidebar">
+          <span>Selected Color: </span><div v-bind:style="{ 'background-color': currentColor}" id="selectedColorIcon"></div>
+          <ul id="categories">
+            <li id="sleep" @click="changeCat(1)">Sleep</li>
+            <li id="school" @click="changeCat(2)">School</li>
+            <li id="downtime" @click="changeCat(3)">Downtime</li>
+            <li id="socialTime" @click="changeCat(4)">Social time</li>
+            <li id="excercise" @click="changeCat(5)">Excercise</li>
+            <li id="productive" @click="changeCat(6)">Productive Time</li>
+            <li id="gaming" @click="changeCat(7)">Gaming</li>
+            <li id="familyTime" @click="changeCat(8)">Family Time</li>
+            <li id="travel" @click="changeCat(9)">Travel</li>
+            <li id="prep" @click="changeCat(10)">Prep</li>
+            <li id="wasteTime" @click="changeCat(11)">Waste Time</li>
+            <li id="health" @click="changeCat(12)">Health</li>
+          </ul>
+        </div>
+        <div id="middle">
+          <div id="currentDay">
+            <h3 id="currentDayTitle">Current Day:</h3>
+            <div id="changeDays">
+              <button id="backDay"><</button>
+              <button id="forwardDay">></button>
+            </div>
+            <button id="refresh"><img src="refresh-symbol.png"></button>
+            <table id="currentDayTable">
+              <tr>
+                <th>0:00</th>
+                <th>1:00</th>
+                <th>2:00</th>
+                <th>3:00</th>
+                <th>4:00</th>
+                <th>5:00</th>
+                <th>6:00</th>
+                <th>7:00</th>
+                <th>8:00</th>
+                <th>9:00</th>
+                <th>10:00</th>
+                <th>11:00</th>
+              </tr>
+              <tr>
+                <td id="0" @click="setHour(0)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="1" @click="setHour(1)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="2" @click="setHour(2)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="3" @click="setHour(3)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="4" @click="setHour(4)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="5" @click="setHour(5)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="6" @click="setHour(6)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="7" @click="setHour(7)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="8" @click="setHour(8)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="9" @click="setHour(9)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="10" @click="setHour(10)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="11" @click="setHour(11)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+              </tr>
+              <tr>
+                <td id="12" @click="setHour(12)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="13" @click="setHour(13)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="14" @click="setHour(14)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="15" @click="setHour(15)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="16" @click="setHour(16)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="17" @click="setHour(17)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="18" @click="setHour(18)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="19" @click="setHour(19)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="20" @click="setHour(20)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="21" @click="setHour(21)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="22" @click="setHour(22)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+                <td id="23" @click="setHour(23)" class=".tooltip" data-tooltip-content="#tooltip_content"></td>
+              </tr>
+
+            </table>
+          </div>
+          <div id="sec1">
+            <div id="nextDayEvents">
+              <div id="tasksContainer">
+                <h3 id="tasksTitle">Tasks</h3>
+                <ul id="tasksList">
+                </ul>
+              </div>
+            </div>
+            <div id="upcomingEvents">
+              <h3 id="eventsTitle">Upcoming Events</h3>
+              <ul id="eventsList"></ul>
+            </div>
+          </div>
+          <div id="graphs">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "hour_logger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gcloud app deploy",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "googleapis": "^27.0.0",
+    "socket.io": "^2.1.1",
+    "sql": "^0.78.0"
+  }
+}
